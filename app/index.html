@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Album printer</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1"/>
+        <link rel="stylesheet" href="./app/css/styles.css" media="all" />
+
+    </head>
+    <body>
+        <h1>Album printer</h1>
+        <p>
+            Your application is ready. There should be a message in your browsers
+            console indicating the JavaScript application has loaded.
+        </p>
+        <form action="#">
+            <fieldset>
+                <label for="fileSelector">Select an Image file</label>
+                <input type="file" id="fileSelector" />
+            </fieldset>
+        </form>
+        <!-- <div class="frame"> -->
+            <!-- <div id="imageContainer">
+            </div> -->
+
+        <!-- </div> -->
+        <div class="frame">
+            <canvas id='photo'></canvas>
+        </div>
+        <div id="controls">
+            <button id="moveLeft">move left</button>
+            <button id="moveRight">move right</button>
+            <button id="moveUp">move up</button>
+            <button id="moveDown">move down</button>
+            <button id="scaleDown">scale Down</button>
+            <button id="scaleUp">scale Up</button>
+            <button id="generateButton">Generate and Save</button>
+            <button id="import">Import saved</button>
+        </div>
+        <div id="debugContainer">
+            <!-- will hold debug messages -->
+        </div>
+        <div id="dpi" style="height: 1in; width: 1in; left: 100%; position: fixed; top: 100%;"></div>
+
+        <script type="application/javascript" src="./app/js/main.js"></script>
+    </body>
+</html>
