@@ -4,9 +4,11 @@ export const fileSelector = document.getElementById('fileSelector');
 export const imageContainer = document.getElementById('imageContainer');
 export const debugContainer = document.getElementById('debugContainer');
 export const generateButton = document.getElementById( 'generateButton');
+export const importButton = document.getElementById( 'importButton');
 
 export const fileSelectorChange = on('change', fileSelector);
 export const generateButtonClick = on('click', generateButton);
+export const importButtonClick = on('click', importButton);
 
 // Canvas
 export const canvasContainer = document.getElementById('photo');

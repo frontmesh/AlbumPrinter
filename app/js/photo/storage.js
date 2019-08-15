@@ -5,4 +5,4 @@ export const save = (img, oX, oY) => {
   return img;
 }
 
-export const load = (img, oX, oY) => JSON.parse(localStorage.getItem(STORAGE_KEY));
+export const load = () => JSON.parse(localStorage.getItem(STORAGE_KEY));

@@ -15,6 +15,8 @@ export const setupCanvas = () => {
 export const getCanvasCtx = () =>
   canvasContainer.getContext('2d')
 
+export const canvasToDataUrl = () =>  canvasContainer.toDataURL("")
+
 export const clearCanvas = () =>
   getCanvasCtx()
     .clearRect(0,0,canvasContainer.width, canvasContainer.height)

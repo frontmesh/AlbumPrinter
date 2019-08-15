@@ -8,6 +8,7 @@ import {
   imageContainer,
   debugContainer,
   generateButtonClick,
+  importButtonClick,
   scaleDownClick,
   scaleUpClick,
   moveDownClick,
@@ -18,10 +19,11 @@ import {
 
 import log from './utils/log';
 
-import { setupCanvas, drawImage } from './photo/canvas';
+import { setupCanvas, drawImage, canvasToDataUrl } from './photo/canvas';
 import { loadReader } from './photo/reader';
 import { getDescription } from './photo/description';
-import { save } from './photo/storage';
+import { save, load } from './photo/storage';
+import { ignoreElements } from 'rxjs/operator/ignoreElements';
 
 const main = () => {
   let loadedImage; // pseudo state
@@ -68,8 +70,20 @@ const main = () => {
           }
         )
         .map(
-          img => Result.try(save(img))
+          img => Result.try(save(canvasToDataUrl(), ox, oy))
         )
+  );
+
+  importButtonClick(
+    () => {
+      Result.fromNullable(load(), {}).map(data => {
+        const img = new Image();
+        img.src = data.img;
+        img.onload = () => drawImage(img, data.oX, data.oY, scale)
+        loadedImage = img;
+        return img;
+      });
+    }
   );
 
   scaleUpClick(() => {
@@ -82,23 +96,19 @@ const main = () => {
   });
 
   moveDownClick(()=>{
-    ox = 0;
     oy +=50;
     Maybe.fromNullable(loadedImage).map(img => drawImage(img, ox, oy, scale))
   });
   moveUpClick(()=> {
-    ox = 0;
     oy -=50;
     Maybe.fromNullable(loadedImage).map(img => drawImage(img, ox, oy, scale))
   });
   moveRightClick(() => {
     ox +=50;
-    oy = 0;
     Maybe.fromNullable(loadedImage).map(img => drawImage(img, ox, oy, scale))
   });
   moveLeftClick(() => {
     ox -=50;
-    oy = 0;
     Maybe.fromNullable(loadedImage).map(img => drawImage(img, ox, oy, scale))
   });
 };
